@@ -1,0 +1,48 @@
+<% layout('layouts/boilerplate')%>
+<div class="row">
+    <h1 class="text-center">Add New Product!</h1>
+    <div class="col-6 offset-3">
+        <form action="/campgrounds" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
+            <div class="mb-3" >
+                <label class="form-label" for="title">Title</label>
+                <input class="form-control" type="text" id="title" name="title" required>
+                <div class="valid-feedback">
+                    Looks Good!
+                </div>
+            </div>
+            <div class="mb-3" >
+                <label class="form-label" for="location">Your Location</label>
+                <input class="form-control" type="text" id="location" name="location" required>
+                <div class="valid-feedback">
+                    Looks Good!
+                </div>
+            </div>
+            <div class="mb-3" >
+                <input type="file" class="form-file-input" id="image" name="image" multiple>
+                <div class="valid-feedback"></div>
+            </div>
+            <div class="mb-3" >
+                <label class="form-label" for="price">Product Rent(/Month)</label>
+                <div class="input-group">
+                    <span class="input-group-text" id="price-label">$</span>
+                    <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price"
+                        aria-describedby="price-label" name="price" required>
+                </div>
+                <div class="valid-feedback">
+                    Looks Good!
+                </div>
+            </div>
+            <div class="mb-3" >
+                <label class="form-label" for="description">Description(Inc. Contact Details)</label>
+                <textarea class="form-control" type="text" id="description" name="description" required></textarea>
+                <div class="valid-feedback">
+                    Looks Good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-success">Add Product</button>
+            </div>
+        </form>
+        <a href="/campgrounds">All Products</a>
+    </div>
+</div>
