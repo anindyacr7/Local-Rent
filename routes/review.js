@@ -5,7 +5,7 @@ const ExpressError=require("../utils/ExpressError")
 const catchAsync=require("../utils/catchAsync")
 const {validateReview,isLoggedin,isReviewAuthor}=require("../middleware")
 
-const Campground=require('../models/campground')
+const Product=require('../models/product')
 const reviews=require("../controllers/reviews")
 
 router.post("/",isLoggedin,validateReview,catchAsync(reviews.submitReview))

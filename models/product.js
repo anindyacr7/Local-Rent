@@ -12,7 +12,7 @@ const opts={toJSON:{virtuals:true}}
 imageSchema.virtual('thumbnail').get(function () {
     return this.url.replace('/upload','/upload/w_150')
 })
-const campgroundSchema=new Schema({
+const productSchema=new Schema({
     title: String,
     images:[imageSchema],
     price: Number,
@@ -41,15 +41,15 @@ const campgroundSchema=new Schema({
     }
 },opts)
 
-campgroundSchema.virtual('properties.popUpMarkUp').get(function () {
+productSchema.virtual('properties.popUpMarkUp').get(function () {
     return `
-    <strong><a href="/campgrounds/${this._id}">${this.title}</a></strong>`
+    <strong><a href="/products/${this._id}">${this.title}</a></strong>`
 })
 
-campgroundSchema.post('findOneAndDelete',async function(doc){
+productSchema.post('findOneAndDelete',async function(doc){
     if(doc)
     {
         await Review.deleteMany({_id:{$in: doc.reviews}})
     }
 })
-module.exports=mongoose.model('Campground',campgroundSchema)
+module.exports=mongoose.model('product',productSchema)

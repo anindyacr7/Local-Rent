@@ -9,7 +9,7 @@ const flash=require("connect-flash")
 const mongoose=require('mongoose')
 const ejsMate=require('ejs-mate')
 const path=require('path')
-const {campgroundSchema,reviewSchema}=require("./schemas.js")
+const {productSchema,reviewSchema}=require("./schemas.js")
 const session=require("express-session")
 const passport=require('passport')
 const LocalStrategy=require('passport-local')
@@ -19,10 +19,10 @@ const MongoDBStore = require('connect-mongo')(session)
 
 const ExpressError=require("./utils/ExpressError")
 const catchAsync=require("./utils/catchAsync")
-const Campground=require('./models/campground')
+const product=require('./models/product')
 const Review=require("./models/review")
 
-const campgroundRoutes=require("./routes/campground")
+const productRoutes=require("./routes/product")
 const reviewRoutes=require("./routes/review")
 const userRoutes=require("./routes/user")
 const dbUrl=process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp'
@@ -86,8 +86,8 @@ app.use((req,res,next)=>{
 })
 
 app.use("/",userRoutes)
-app.use('/campgrounds',campgroundRoutes)
-app.use('/campgrounds/:id/reviews',reviewRoutes)
+app.use('/products',productRoutes)
+app.use('/products/:id/reviews',reviewRoutes)
 
 app.get('/',(req,res)=>{
     res.render('home')

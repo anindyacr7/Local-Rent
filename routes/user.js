@@ -16,7 +16,7 @@ router.post('/register', catchAsync(async (req, res, next) => {
         req.login(registeredUser, err => {
             if (err) return next(err);
             req.flash('success', 'Welcome to Local-Rent!');
-            res.redirect('/campgrounds');
+            res.redirect('/products');
         })
     } catch (e) {
         req.flash('error', e.message);
@@ -31,7 +31,7 @@ router.get('/login',(req,res)=>{
 router.post('/login',passport.authenticate('local',{ failureFlash: true, failureRedirect: '/login' }),(req,res)=>{
     req.flash('success','Welcome Back!')
     console.log(req.session.returnTo)
-    const redirectUrl = req.session.returnTo || '/campgrounds'
+    const redirectUrl = req.session.returnTo || '/products'
     delete req.session.returnTo
     res.redirect(redirectUrl)
 })
@@ -39,6 +39,6 @@ router.post('/login',passport.authenticate('local',{ failureFlash: true, failure
 router.get('/logout',(req,res)=>{
     req.logOut()
     req.flash('success','Good Bye')
-    res.redirect("/campgrounds")
+    res.redirect("/products")
 })
 module.exports=router
